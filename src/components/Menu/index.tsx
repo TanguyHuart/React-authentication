@@ -1,18 +1,15 @@
-import { useSelector } from 'react-redux';
-
 import './styles.scss';
+import { Recipe } from '../../@types/recipe';
+import { useAppSelector } from '../../hooks/redux';
 
 function Menu() {
-  const recipes = useSelector((state: any) => state.recipes);
+  const recipes = useAppSelector((state) => state.recipes.list);
   return (
     <nav className="menu">
-      <a
-        className="menu-link menu-link--active"
-        href="/"
-      >
+      <a className="menu-link menu-link--active" href="/">
         Accueil
       </a>
-      {recipes.map((recipe: any) => (
+      {recipes.map((recipe: Recipe) => (
         <a
           key={recipe.id}
           className="menu-link"
