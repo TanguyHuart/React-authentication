@@ -10,12 +10,12 @@ interface RecipesState {
 }
 export const initialState: RecipesState = {
   list: [],
-  isLoading: false,
+  isLoading: true,
   error: null,
 };
 
-export const getRecipes = createAsyncThunk('home/recipes', async () => {
-  const { data } = await axios.get<{ recipe: Recipe[] }>(
+export const getRecipes = createAsyncThunk('recipes/fetch', async () => {
+  const { data } = await axios.get<Recipe[]>(
     'https://orecipes-api.onrender.com/api/recipes'
   );
 
@@ -42,7 +42,7 @@ const recipesReducer = createSlice({
       })
       .addCase(getRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.list = action.payload.recipe;
+        state.list = action.payload;
       });
   },
 });

@@ -4,7 +4,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import Root from './routes/Root/Root';
 import Error from './components/Error';
 
-import Content from './components/Content';
 import Home from './routes/Home';
 import Recipe from './routes/Recipe';
 

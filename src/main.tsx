@@ -3,7 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 // On importe ReactDom qui nous permettra d'injecter notre application dans le DOM
 import ReactDOM from 'react-dom/client';
 // On importe notre composant principal
-import App from './components/App/App';
+
 // On importe notre fichier de style global
 import './styles/index.scss';
 

@@ -27,6 +27,7 @@ function Recipe() {
   if (!recipe) {
     return <Navigate to="/error" replace />;
   }
+
   return (
     <Page>
       <AppHeader />
