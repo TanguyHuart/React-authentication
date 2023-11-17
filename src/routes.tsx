@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import Root from './routes/Root/Root';
 import Error from './components/Error';
+import Favorite from './components/Favorites/Favorites';
 
 import Home from './routes/Home';
 import Recipe from './routes/Recipe';
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: '/recipe/:slug',
         element: <Recipe />,
+      },
+      {
+        path: '/favorites',
+        element: <Favorite />,
       },
     ],
   },

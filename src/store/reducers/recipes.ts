@@ -2,25 +2,37 @@ import axios from 'axios';
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { Recipe } from '../../@types/recipe';
+import { axiosInstance } from '../../utils/axios';
 
 interface RecipesState {
   list: Recipe[];
+  favorites: Recipe[];
   isLoading: boolean;
   error: null | string;
 }
 export const initialState: RecipesState = {
   list: [],
+  favorites: [],
   isLoading: true,
   error: null,
 };
 
 export const getRecipes = createAsyncThunk('recipes/fetch', async () => {
-  const { data } = await axios.get<Recipe[]>(
-    'https://orecipes-api.onrender.com/api/recipes'
-  );
+  const { data } = await axiosInstance.get<Recipe[]>('/recipes');
 
   return data;
 });
+
+export const getFavoriteRecipes = createAsyncThunk(
+  'recipes/fetch-favorites',
+  async () => {
+    const { data } = await axiosInstance.get<{ favorites: Recipe[] }>(
+      '/favorites'
+    );
+
+    return data;
+  }
+);
 
 const recipesReducer = createSlice({
   name: 'recipes',
@@ -43,6 +55,9 @@ const recipesReducer = createSlice({
       .addCase(getRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
         state.list = action.payload;
+      })
+      .addCase(getFavoriteRecipes.fulfilled, (state, action) => {
+        state.favorites = action.payload.favorites;
       });
   },
 });
